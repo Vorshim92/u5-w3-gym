@@ -27,7 +27,7 @@ class CourseSeeder extends Seeder
             'name' => 'Corso di Culi Ballare',
             'description' => 'Il corso di culi ballare, un modo per imparare a ballare con i culi.',
             'location' => 'Building B, Room 111',
-            'activity_id' => 1,
+            'activity_id' => 2,
             'slot_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
