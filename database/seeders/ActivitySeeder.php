@@ -15,12 +15,12 @@ class ActivitySeeder extends Seeder
     public function run(): void
     {
         Activity::create([
-            'name' => 'Attività di Smerdamento',
-            'description' => 'Corsi di diverso livello di Smerdamento.',
+            'name' => 'Attività di Babidoiu',
+            'description' => 'Corsi di diverso livello di Babidoiu.',
         ]);
         Activity::create([
-            'name' => 'Attività di Culo Ballineria',
-            'description' => 'Corsi di diverso livello di Culo Ballareria.',
+            'name' => 'Attività di Culo Gym',
+            'description' => 'Corsi di diverso livello di Mulo Gym.',
         ]);
     }
 }

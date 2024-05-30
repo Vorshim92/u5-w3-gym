@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
@@ -62,5 +64,22 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         //
+    }
+
+    public function book(Course $course)
+    {
+        $user = Auth::user();
+        // $user = User::find($user->id);
+        // Verifica se l'utente ha già prenotato il corso
+        $existingBooking = $user->courses()->where('course_id', $course->id)->first();
+
+        if ($existingBooking) {
+            return redirect()->back()->with('error', 'You have already booked this course.');
+        }
+
+        // Aggiunge la prenotazione
+        $user->courses()->attach($course->id, ['status' => 'pending']);
+
+        return redirect()->back()->with('success', 'Course booked successfully.');
     }
 }

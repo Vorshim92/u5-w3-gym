@@ -39,6 +39,7 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         // $activity->load('courses.slot');
+        $user = auth()->user();
 
         $morningCourses = $activity->courses->filter(function ($course) {
             return $course->slot->name == 'Morning Slot';
@@ -48,7 +49,9 @@ class ActivityController extends Controller
             return $course->slot->name == 'Afternoon Slot';
         });
 
-        return view('activities.show', compact('activity', 'morningCourses', 'afternoonCourses'));
+        $bookedCourses = $user ? $user->courses()->pluck('course_id')->toArray() : [];
+
+        return view('activities.show', compact('activity', 'morningCourses', 'afternoonCourses', 'bookedCourses'));
     }
 
     /**

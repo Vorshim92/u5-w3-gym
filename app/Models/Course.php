@@ -14,7 +14,7 @@ class Course extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(User::class, 'course_user')->withPivot('status')->withTimestamps();
     }
 
     public function slot(): BelongsTo

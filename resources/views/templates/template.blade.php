@@ -121,9 +121,11 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                             @auth
-                                {{-- <x-nav-link :href="route('prods.create')" :active="request()->routeIs('prods.create')">
-                                    {{ __('Add Product') }}
-                                </x-nav-link> --}}
+                                @if (auth()->user()->role === 'admin')
+                                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                        {{ __('Admin Dashboard') }}
+                                    </x-nav-link>
+                                @endif
                             @endauth
                         </div>
                     </div>

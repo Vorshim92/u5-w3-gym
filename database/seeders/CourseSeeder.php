@@ -15,7 +15,7 @@ class CourseSeeder extends Seeder
     public function run(): void
     {
         Course::create([
-            'name' => 'Corso di Smerdamento Lvl.1',
+            'name' => 'Corso di Babidoiu Lvl.1',
             'description' => 'Un corso introduttivo allo smerdamento delle persone.',
             'location' => 'Building A, Room 101',
             'activity_id' => 1,
@@ -24,7 +24,7 @@ class CourseSeeder extends Seeder
             'updated_at' => now(),
         ]);
         Course::create([
-            'name' => 'Corso di Smerdamento Lvl.2',
+            'name' => 'Corso di Babidoiu Lvl.2',
             'description' => 'Un corso introduttivo allo smerdamento delle persone.',
             'location' => 'Building A, Room 101',
             'activity_id' => 1,
@@ -33,8 +33,8 @@ class CourseSeeder extends Seeder
             'updated_at' => now(),
         ]);
         Course::create([
-            'name' => 'Corso di Culi Ballare Lvl.1',
-            'description' => 'Il corso di culi ballare, un modo per imparare a ballare con i culi.',
+            'name' => 'Corso di Gym Lvl.1',
+            'description' => 'Il corso di Gym, un modo per imparare a ballare con i muli.',
             'location' => 'Building B, Room 111',
             'activity_id' => 2,
             'slot_id' => 1,
@@ -42,8 +42,8 @@ class CourseSeeder extends Seeder
             'updated_at' => now(),
         ]);
         Course::create([
-            'name' => 'Corso di Culi Ballare Lvl.2',
-            'description' => 'Il corso di culi ballare, un modo per imparare a ballare con i culi.',
+            'name' => 'Corso di Gym Lvl.2',
+            'description' => 'Il corso di Gym, un modo per imparare a ballare con i muli.',
             'location' => 'Building B, Room 111',
             'activity_id' => 2,
             'slot_id' => 2,
