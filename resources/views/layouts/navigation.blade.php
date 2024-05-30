@@ -15,14 +15,31 @@
                     <x-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
                         {{ __('Homepage') }}
                     </x-nav-link>
+                    {{-- <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('prods.index')" :active="request()->routeIs('prods.index')">
+                        {{ __('Prodotti') }}
+                    </x-nav-link> --}}
+                    <x-nav-link :href="route('activities.index')" :active="request()->routeIs('activities.index')">
+                        {{ __('Attività') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @auth
+                    @if (auth()->user()->role === 'admin')
+                        <x-nav-link class="mx-3" :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Back Office') }}
+                        </x-nav-link>
+                    @endif
+                @endauth
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
