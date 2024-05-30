@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Activity extends Model
 {
     use HasFactory;
 
-    public function course()
+    public function courses(): HasMany
     {
-        return $this->belongsToMany(Course::class);
+        return $this->hasMany(Course::class);
     }
 }

@@ -22,5 +22,13 @@ class SlotSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        Slot::create([
+            'name' => 'Afternoon Slot',
+            'date' => '2024-06-01',
+            'start_time' => '14:00',
+            'end_time' => '18:00',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Course extends Model
@@ -17,13 +17,13 @@ class Course extends Model
         return $this->belongsToMany(User::class)->withPivot('status')->withTimestamps();
     }
 
-    public function slots(): HasMany
+    public function slot(): belongsTo
     {
-        return $this->hasMany(Slot::class);
+        return $this->belongsTo(Slot::class);
     }
 
-    public function activities(): HasMany
+    public function activity(): BelongsTo
     {
-        return $this->hasMany(Activity::class);
+        return $this->belongsTo(Activity::class);
     }
 }

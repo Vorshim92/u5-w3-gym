@@ -38,7 +38,17 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        return view('activities.show', compact('activity'));
+        $activity->load('courses.slot');
+
+        $morningCourses = $activity->courses->filter(function ($course) {
+            return $course->slot->name == 'Morning Slot';
+        });
+
+        $afternoonCourses = $activity->courses->filter(function ($course) {
+            return $course->slot->name == 'Afternoon Slot';
+        });
+
+        return view('activities.show', compact('activity', 'morningCourses', 'afternoonCourses'));
     }
 
     /**
