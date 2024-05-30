@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivityController;
-use App\Http\Middleware\AdminMiddleware;
+// use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('homepage');
@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/courses/{course}/book', [CourseController::class, 'book'])->name('courses.book');
 });
 
-Route::middleware(AdminMiddleware::class)->group(function () {
+Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/users/{user}/edit', [AdminController::class, 'adminUserEdit'])->name('admin.users.edit');
     Route::get('/admin/users/{user}/show', [AdminController::class, 'adminShow'])->name('admin.users.show');
