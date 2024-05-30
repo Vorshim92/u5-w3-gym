@@ -38,7 +38,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        $activity->load('courses.slot');
+        // $activity->load('courses.slot');
 
         $morningCourses = $activity->courses->filter(function ($course) {
             return $course->slot->name == 'Morning Slot';
