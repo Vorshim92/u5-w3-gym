@@ -24,8 +24,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/courses/{course}/book', [CourseController::class, 'book'])->name('courses.book');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware(AdminMiddleware::class);
 });
+
+Route::middleware(AdminMiddleware::class)->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/users/{user}/edit', [AdminController::class, 'adminUserEdit'])->name('admin.users.edit');
+    Route::get('/admin/users/{user}/show', [AdminController::class, 'adminShow'])->name('admin.users.show');
+    Route::patch('/admin/users/{user}/courses/{course}/status/{status}', [AdminController::class, 'updateStatus'])->name('admin.users.updateStatus');
+    Route::delete('/admin/users/{user}/courses/{course}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+});
+
+
 
 //guest auth
 Route::middleware('guest')->group(function () {
