@@ -114,6 +114,9 @@
                             <x-nav-link :href="route('prods.index')" :active="request()->routeIs('prods.index')">
                                 {{ __('Prodotti') }}
                             </x-nav-link> --}}
+                            <x-nav-link :href="route('activities.index')" :active="request()->routeIs('activities.index')">
+                                {{ __('Attività') }}
+                            </x-nav-link>
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
