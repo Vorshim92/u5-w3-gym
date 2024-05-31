@@ -1,5 +1,5 @@
 @props(['course', 'user'])
-<div class="card mt-2">
+<div class="card mt-2 col-3 ">
     <div class="card-body">
         <h5 class="card-title">{{ $course->name }}</h5>
         <p class="card-text">{{ $course->description }}</p>

@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 // use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
@@ -26,19 +29,22 @@ Route::middleware('auth')->group(function () {
     Route::post('/courses/{course}/book', [CourseController::class, 'book'])->name('courses.book');
 });
 
-Route::middleware('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/users/{user}/edit', [AdminController::class, 'adminUserEdit'])->name('admin.users.edit');
     Route::get('/admin/users/{user}/show', [AdminController::class, 'adminShow'])->name('admin.users.show');
-    Route::patch('/admin/users/{user}/courses/{course}/status/{status}', [AdminController::class, 'updateStatus'])->name('admin.users.updateStatus');
-    Route::delete('/admin/users/{user}/courses/{course}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+    Route::patch('/admin/{user}/{course}/{status}', [AdminController::class, 'updateStatus'])->name('admin.users.updateStatus');
+    Route::delete('/admin/{user}/{course}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/admin/formActivity', [AdminController::class, 'showCreateActivityForm'])->name('admin.formActivity');
+    Route::post('/admin/activity', [AdminController::class, 'createActivity'])->name('admin.createActivity');
+    Route::delete('/admin/{id}', [AdminController::class, 'destroyActivity'])->name('admin.activity.destroy');
 });
 
 
 
 //guest auth
 Route::middleware('guest')->group(function () {
-    Route::get('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])
+    Route::get('/register', [RegisteredUserController::class, 'create'])
         ->name('register');
 });
 

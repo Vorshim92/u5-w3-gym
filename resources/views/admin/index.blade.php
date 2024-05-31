@@ -6,7 +6,7 @@
     <div class="row justify-content-center my-5 gap-3">
         <h1 class="text-center">Admin Dashboard</h1>
         @foreach ($users as $user)
-            <div class="card">
+            <div class="card col-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ $user->name }}</h5>
                     <p class="card-text">{{ $user->email }}</p>
@@ -15,6 +15,10 @@
                 </div>
             </div>
         @endforeach
+
+        <a href="{{ route('admin.formActivity') }}" class="btn btn-primary">AGGIUNGI ATTIVITA'</a>
+        <a href="" class="btn btn-primary">AGGIUNGI CORSO'</a>
+
 
 
 
