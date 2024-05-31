@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Activity;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Action;
 
 class AdminController extends Controller
 {
@@ -44,10 +46,36 @@ class AdminController extends Controller
 
         return redirect()->back()->with('status', 'Stato della prenotazione aggiornato');
     }
+
+
     public function destroy(Request $request, User $user, Course $course)
     {
         // Aggiorna lo stato della prenotazione
         $user->courses()->detach($course->id);
         return redirect()->back()->with('status', 'Prenotazione cancellata');
+    }
+
+    public function createActivity(Request $request)
+    {
+        $activity = new Activity();
+        $activity->name = $request->name;
+        $activity->description = $request->description;
+        $activity->timestamps = false;
+        $activity->save();
+        return redirect()->back()->with('status', 'Attività creata');
+    }
+
+    public function showCreateActivityForm()
+    {
+        // Mostra il form per creare una nuova attività
+        return view('admin.formActivity');
+    }
+
+
+    public function destroyActivity($id)
+    {
+        $activity = Activity::find($id);
+        $activity->delete();
+        return redirect()->back()->with('status', 'Attività cancellata');
     }
 }
