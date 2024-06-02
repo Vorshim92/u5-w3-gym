@@ -37,7 +37,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin/{user}/{course}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/admin/formActivity', [AdminController::class, 'showCreateActivityForm'])->name('admin.formActivity');
     Route::post('/admin/activity', [AdminController::class, 'createActivity'])->name('admin.createActivity');
-    Route::delete('/admin/{id}', [AdminController::class, 'destroyActivity'])->name('admin.activity.destroy');
+    Route::delete('/admin/activity/{id}', [AdminController::class, 'destroyActivity'])->name('admin.activity.destroy');
+    Route::delete('/admin/course/{id}', [AdminController::class, 'destroyCourse'])->name('admin.course.destroy');
 });
 
 

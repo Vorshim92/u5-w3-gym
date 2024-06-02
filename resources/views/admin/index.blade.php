@@ -11,7 +11,11 @@
                     <h5 class="card-title">{{ $user->name }}</h5>
                     <p class="card-text">{{ $user->email }}</p>
                     <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Edit Profile</a>
-                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary">Prenotazioni</a>
+                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary">Prenotazioni
+                        @if ($user->pending_courses_count > 0)
+                            <span class="badge bg-danger">{{ $user->pending_courses_count }}</span>
+                        @endif
+                    </a>
                 </div>
             </div>
         @endforeach

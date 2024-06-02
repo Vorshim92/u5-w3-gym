@@ -12,7 +12,10 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::withCount(['courses as pending_courses_count' => function ($query) {
+            $query->where('status', 'pending');
+        }])->get();
+
         return view('admin.index', compact('users'));
     }
 
