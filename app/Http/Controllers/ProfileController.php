@@ -63,4 +63,19 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function dashboard()
+    {
+        // $activity->load('courses.slot');
+        $user = auth()->user();
+
+        $courses = $user ? $user->courses()->where('status', 'accepted')->get() : collect();
+        // $bookedCourses = $user ? $user->courses()->pluck('course_id')->toArray() : [];
+        // if ($bookedCourses)
+        // {
+
+        // }
+
+        return view('dashboard', compact('courses'));
+    }
 }

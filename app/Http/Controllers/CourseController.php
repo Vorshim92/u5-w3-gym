@@ -63,7 +63,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $user = Auth::user();
+        $user->courses()->detach($course->id);
+        return redirect()->back()->with('status', 'Corso annullato');
     }
 
     public function book(Course $course)
